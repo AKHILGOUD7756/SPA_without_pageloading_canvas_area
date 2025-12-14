@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anatomy Department - Father Columbo Medical College</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" />
+  <style>
+    /* Custom CSS for Anatomy Department */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #333;
+    }
+    
+    .banner {
+      position: relative;
+      width: 100%;
+      height: 300px;
+      overflow: hidden;
+    }
+    
+    .banner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .breadcrumb-ti {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 15px;
+    }
+    
+    .breadcrumb-ti h4 {
+      margin: 0;
+      font-weight: 600;
+    }
+    
+    .breadcrumb {
+      margin-bottom: 0;
+      background: transparent;
+    }
+    
+    .breadcrumb-item a {
+      color: #ddd;
+    }
+    
+    .breadcrumb-item.active {
+      color: white;
+    }
+    
+    .main {
+      padding: 40px 0;
+    }
+    
+    .left-box {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      padding: 25px;
+      margin-bottom: 20px;
+    }
+    
+    .quick-menu-fcims {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      position: sticky;
+      top: 20px;
+    }
+    
+    .quick-menu-fcims h2 {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      color: #2c3e50;
+      border-bottom: 2px solid #3498db;
+      padding-bottom: 10px;
+    }
+    
+    .quick-menu-fcims ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .quick-menu-fcims li {
+      margin-bottom: 8px;
+    }
+    
+    .quick-menu-fcims li a {
+      display: block;
+      padding: 10px 15px;
+      text-decoration: none;
+      color: #555;
+      border-radius: 4px;
+      transition: all 0.3s;
+    }
+    
+    .quick-menu-fcims li.active a,
+    .quick-menu-fcims li a:hover {
+      background-color: #3498db;
+      color: white;
+    }
+    
+    .tab-row {
+      display: flex;
+      margin: 20px 0;
+      border-bottom: 1px solid #ddd;
+    }
+    
+    .tab {
+      padding: 10px 20px;
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+    }
+    
+    .tab.active {
+      border-bottom: 3px solid #3498db;
+      color: #3498db;
+      font-weight: 600;
+    }
+    
+    .section-text {
+      line-height: 1.6;
+    }
+    
+    .hidden {
+      display: none;
+    }
+    
+    .fcims-faculty {
+      margin-top: 20px;
+    }
+    
+    .faculty-table th {
+      background-color: #f8f9fa;
+      font-weight: 600;
+    }
+    
+    .tbname {
+      font-weight: 500;
+    }
+    
+    .infra-img {
+      overflow: hidden;
+      border-radius: 8px;
+      transition: transform 0.3s;
+    }
+    
+    .infra-img:hover {
+      transform: translateY(-5px);
+    }
+    
+    .infra-img img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+    
+    .infra-img:hover img {
+      transform: scale(1.05);
+    }
+    
+    .nav-tabs .nav-link {
+      color: #555;
+      font-weight: 500;
+    }
+    
+    .nav-tabs .nav-link.active {
+      color: #3498db;
+      border-bottom: 3px solid #3498db;
+    }
+    
+    @media (max-width: 768px) {
+      .banner {
+        height: 200px;
+      }
+      
+      .quick-menu-fcims {
+        position: static;
+        margin-bottom: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+
+  <!-- Main Content Area -->
+  <main class="main">
+    <div class="container dept-container">
+      <div class="row">
+        
+        <!-- LEFT SIDE CONTENT -->
+        <div class="col-lg-8 col-md-8 col-sm-12 mb-4">
+          <div class="left-box">
+            <div id="content"></div>
+          </div>
+        </div>
+
+        <!-- RIGHT QUICK MENU -->
+        <div class="col-lg-4 col-md-4 col-sm-12">
+          <div class="quick-menu-fcims">
+            <h2>Quick Menu</h2>
+            <ul>
+              <li class="active" onclick="loadContent('vision', event)">
+                <a href="#">Department of Anatomy</a>
+              </li>
+              <li onclick="loadContent('services', event)">
+                <a href="#">Services Offered</a>
+              </li>
+              <li onclick="loadContent('faculty', event)">
+                <a href="#">Faculty</a>
+              </li>
+              <li onclick="loadContent('infra', event)">
+                <a href="#">Infrastructure</a>
+              </li>
+              <li onclick="loadContent('extension', event)">
+                <a href="#">Extension & Outreach Activities</a>
+              </li>
+              <li onclick="loadContent('gallery', event)">
+                <a href="#">Photo Gallery</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+
+  <!-- JavaScript -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+  
+  <script>
+    function loadContent(section, event) {
+      const content = document.getElementById("content");
+      const menuItems = document.querySelectorAll(".quick-menu-fcims li");
+      menuItems.forEach(li => li.classList.remove("active"));
+      if (event) event.target.closest("li").classList.add("active");
+
+      let html = "";
+      switch (section) {
+        case "vision":
+          html = `
+            <h1>Department of Anatomy</h1>
+            <div class="tab-row">
+              <div class="tab vision active" onclick="showTab('vision')">Vision</div>
+              <div class="tab mission" onclick="showTab('mission')">Mission</div>
+            </div>
+
+            <!-- Vision Content -->
+            <div id="vision-content" class="section-text">
+              <p>➔ Establish a museum featuring real-life anatomical specimens to enhance clinical learning.</p>
+              <p>➔ Create a specialized prenatal, neonatal & paediatric anatomy museum.</p>
+              <p>➔ Develop a state-of-the-art lab for advanced genetic research and diagnostics.</p>
+              <p>➔ Introduce Fluorescence In Situ Hybridization (FISH) for precise genetic analysis.</p>
+              <p>➔ Create a specialized museum focused on the anatomy of unborn, newborn, and young children.</p>
+              <p>➔ Utilize electron microscopy for high-resolution imaging of biological samples.</p>
+              <p>➔ Raise awareness and educate the public about the importance of donating bodies and organs.</p>
+              <p>➔ Implement a system for the retrieval and storage of bones for medical use and research.</p>
+            </div>
+
+            <!-- Mission Content -->
+            <div id="mission-content" class="section-text hidden">
+              <p>➔ Provide a strong foundation in basic sciences for all new students.</p>
+              <p>➔ Ensure postgraduate and Ph.D. students receive the highest educational standards.</p>
+              <p>➔ Encourage a passion for research among undergraduate, postgraduate, and Ph.D. students, as well as faculty members, to benefit humanity.</p>
+            </div>
+          `;
+          break;
+
+        case "services":
+          html = `
+            <h1>Services Offered</h1>
+            <p>Page is updating Soon</p>
+          `;
+          break;
+
+        case "faculty":
+          html = `
+            <div class="title">
+              <h1>Faculty</h1>
+            </div>
+            <div class="fcims-faculty">
+              <div class="table-responsive">
+                <table class="table table-hover table-bordered faculty-table">
+                  <thead>
+                    <tr>
+                      <th>SL NO.</th>
+                      <th class="tbname">NAME</th>
+                      <th>DESIGNATION</th>
+                      <th>IMR NO.</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td></td><td class="tbname">ADITYA MOOTA</td><td>Professor &amp; HOD</td><td>63416</td></tr>
+                    <tr><td></td><td class="tbname">BILLAKANTI PRAKASH BABU</td><td>Professor</td><td>8238202</td></tr>
+                    <tr><td></td><td class="tbname">KONDA MALATHI</td><td>Associate Professor</td><td>69476</td></tr>
+                    <tr><td></td><td class="tbname">YADAVALLI VENKATESWARALU</td><td>Assistant Professor</td><td>15B10504</td></tr>
+                    <tr><td></td><td class="tbname">RAMA SHANKAR</td><td>Tutor</td><td>0351106</td></tr>
+                    <tr><td></td><td class="tbname">SANIYAL FARHEEN KHAN</td><td>Tutor</td><td>TSMCFMR17077</td></tr>
+                    <tr><td></td><td class="tbname">PINDI PRASUNA</td><td>Tutor</td><td>TSMCFMR21083</td></tr>
+                    <tr><td></td><td class="tbname">GURRAPU SUNIL CHANDRA</td><td>Tutor</td><td>TSMCFMR20789</td></tr>
+                    <tr><td></td><td class="tbname">GATTEPALLY NAVYA KRISHNA</td><td>Tutor</td><td>TSMCFMR15762</td></tr>
+                    <tr><td></td><td class="tbname">M SOWMYA</td><td>Tutor</td><td>TSMCFMR27227</td></tr>
+                    <tr><td></td><td class="tbname">GUNDA SUSHMITHA</td><td>Tutor</td><td>TSMCFMR21539</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>`;
+          break;
+
+        case "infra":
+          html = `
+            <h1>Infrastructure</h1>
+            <div class="row">
+              <!-- Image 1 -->
+              <div class="col-xl-3 col-md-6 col-sm-12 mb-4">
+                <div class="infra-img">
+                  <a href="assets/images/anatomy-department/infrastruture/anatomy-museum.webp" 
+                     data-fancybox="gallery">
+                    <img src="assets/images/anatomy-department/infrastruture/anatomy-museum.webp" 
+                         alt="Anatomy Museum" 
+                         class="img-fluid rounded shadow-sm">
+                  </a>
+                </div>
+              </div>
+
+              <!-- Image 2 -->
+              <div class="col-xl-3 col-md-6 col-sm-12 mb-4">
+                <div class="infra-img">
+                  <a href="assets/images/anatomy-department/infrastruture/histology-lab.webp" 
+                     data-fancybox="gallery">
+                    <img src="assets/images/anatomy-department/infrastruture/histology-lab.webp" 
+                         alt="Histology Lab" 
+                         class="img-fluid rounded shadow-sm">
+                  </a>
+                </div>
+              </div>
+
+              <!-- Image 3 -->
+              <div class="col-xl-3 col-md-6 col-sm-12 mb-4">
+                <div class="infra-img">
+                  <a href="assets/images/anatomy-department/infrastruture/histolgy-lab-2.webp" 
+                     data-fancybox="gallery">
+                    <img src="assets/images/anatomy-department/infrastruture/histolgy-lab-2.webp" 
+                         alt="Histology Lab 2" 
+                         class="img-fluid rounded shadow-sm">
+                  </a>
+                </div>
+              </div>
+            </div>`;
+          break;
+
+        case "extension":
+          html = `
+            <h1>Extension & Outreach Activities</h1>
+            <ul class="nav nav-fill nav-tabs" role="tablist">
+              <li class="nav-item" role="presentation">
+                <a class="nav-link active" id="fill-tab-0" data-bs-toggle="tab" href="#fill-tabpanel-0" role="tab" aria-controls="fill-tabpanel-0" aria-selected="true">
+                  Cadaveric Oath
+                </a>
+              </li>
+              <li class="nav-item" role="presentation">
+                <a class="nav-link" id="fill-tab-1" data-bs-toggle="tab" href="#fill-tabpanel-1" role="tab" aria-controls="fill-tabpanel-1" aria-selected="false">
+                  Model Making
+                </a>
+              </li>
+            </ul>
+
+            <div class="tab-content pt-3" id="tab-content">
+              <!-- Cadaveric Oath -->
+              <div class="tab-pane fade show active" id="fill-tabpanel-0" role="tabpanel" aria-labelledby="fill-tab-0">
+                <div class="row">
+                  <!-- Image 1 -->
+                  <div class="col-xl-3 col-md-6 col-sm-12 mb-4">
+                    <div class="infra-img">
+                      <a href="assets/images/anatomy-department/activities/cadveric/cadveric-oath-1.webp" data-fancybox="gallery-cadaveric">
+                        <img src="assets/images/anatomy-department/activities/cadveric/cadveric-oath-1.webp" alt="Cadaveric Oath 1" class="img-fluid rounded shadow-sm">
+                      </a>
+                    </div>
+                  </div>
+
+                  <!-- Image 2 -->
+                  <div class="col-xl-3 col-md-6 col-sm-12 mb-4">
+                    <div class="infra-img">
+                      <a href="assets/images/anatomy-department/activities/cadveric/cadveric-oath-2.webp" data-fancybox="gallery-cadaveric">
+                        <img src="assets/images/anatomy-department/activities/cadveric/cadveric-oath-2.webp" alt="Cadaveric Oath 2" class="img-fluid rounded shadow-sm">
+                      </a>
+                    </div>
+                  </div>
+
+                  <!-- Image 3 -->
+                  <div class="col-xl-3 col-md-6 col-sm-12 mb-4">
+                    <div class="infra-img">
+                      <a href="assets/images/anatomy-department/activities/cadveric/cadveric-oath-3.webp" data-fancybox="gallery-cadaveric">
+                        <img src="assets/images/anatomy-department/activities/cadveric/cadveric-oath-3.webp" alt="Cadaveric Oath 3" class="img-fluid rounded shadow-sm">
+                      </a>
+                    </div>
+                  </div>
+
+                  <!-- Image 4 -->
+                  <div class="col-xl-3 col-md-6 col-sm-12 mb-4">
+                    <div class="infra-img">
+                      <a href="assets/images/anatomy-department/activities/cadveric/cadveric-oath-4.webp" data-fancybox="gallery-cadaveric">
+                        <img src="assets/images/anatomy-department/activities/cadveric/cadveric-oath-4.webp" alt="Cadaveric Oath 4" class="img-fluid rounded shadow-sm">
+                      </a>
+                    </div>
+                  </div>
+
+                  <!-- Image 5 -->
+                  <div class="col-xl-3 col-md-6 col-sm-12 mb-4">
+                    <div class="infra-img">
+                      <a href="assets/images/anatomy-department/activities/cadveric/cadveric-oath-5.webp" data-fancybox="gallery-cadaveric">
+                        <img src="assets/images/anatomy-department/activities/cadveric/cadveric-oath-5.webp" alt="Cadaveric Oath 5" class="img-fluid rounded shadow-sm">
+                      </a>
+                    </div>
+                  </div>
+
+                  <!-- Image 6 -->
+                  <div class="col-xl-3 col-md-6 col-sm-12 mb-4">
+                    <div class="infra-img">
+                      <a href="assets/images/anatomy-department/activities/cadveric/cadveric-oath-6.webp" data-fancybox="gallery-cadaveric">
+                        <img src="assets/images/anatomy-department/activities/cadveric/cadveric-oath-6.webp" alt="Cadaveric Oath 6" class="img-fluid rounded shadow-sm">
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Model Making -->
+              <div class="tab-pane fade" id="fill-tabpanel-1" role="tabpanel" aria-labelledby="fill-tab-1">
+                <div class="row">
+                  <!-- Model Images -->
+                  <div class="col-xl-3 col-md-6 col-sm-12 mb-4">
+                    <div class="infra-img">
+                      <a href="assets/images/anatomy-department/activities/model-making/model-making-1.webp" data-fancybox="gallery-model">
+                        <img src="assets/images/anatomy-department/activities/model-making/model-making-1.webp" alt="Model Making 1" class="img-fluid rounded shadow-sm">
+                      </a>
+                    </div>
+                  </div>
+
+                  <div class="col-xl-3 col-md-6 col-sm-12 mb-4">
+                    <div class="infra-img">
+                      <a href="assets/images/anatomy-department/activities/model-making/model-making-2.webp" data-fancybox="gallery-model">
+                        <img src="assets/images/anatomy-department/activities/model-making/model-making-2.webp" alt="Model Making 2" class="img-fluid rounded shadow-sm">
+                      </a>
+                    </div>
+                  </div>
+
+                  <div class="col-xl-3 col-md-6 col-sm-12 mb-4">
+                    <div class="infra-img">
+                      <a href="assets/images/anatomy-department/activities/model-making/model-making-3.webp" data-fancybox="gallery-model">
+                        <img src="assets/images/anatomy-department/activities/model-making/model-making-3.webp" alt="Model Making 3" class="img-fluid rounded shadow-sm">
+                      </a>
+                    </div>
+                  </div>
+
+                  <div class="col-xl-3 col-md-6 col-sm-12 mb-4">
+                    <div class="infra-img">
+                      <a href="assets/images/anatomy-department/activities/model-making/model-making-4.webp" data-fancybox="gallery-model">
+                        <img src="assets/images/anatomy-department/activities/model-making/model-making-4.webp" alt="Model Making 4" class="img-fluid rounded shadow-sm">
+                      </a>
+                    </div>
+                  </div>
+
+                  <div class="col-xl-3 col-md-6 col-sm-12 mb-4">
+                    <div class="infra-img">
+                      <a href="assets/images/anatomy-department/activities/model-making/model-making-5.webp" data-fancybox="gallery-model">
+                        <img src="assets/images/anatomy-department/activities/model-making/model-making-5.webp" alt="Model Making 5" class="img-fluid rounded shadow-sm">
+                      </a>
+                    </div>
+                  </div>
+
+                  <div class="col-xl-3 col-md-6 col-sm-12 mb-4">
+                    <div class="infra-img">
+                      <a href="assets/images/anatomy-department/activities/model-making/model-making-6.webp" data-fancybox="gallery-model">
+                        <img src="assets/images/anatomy-department/activities/model-making/model-making-6.webp" alt="Model Making 6" class="img-fluid rounded shadow-sm">
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>`;
+          break;
+
+        case "gallery":
+          html = `
+            <h1>Photo Gallery</h1>
+            <div class="row">
+              <div class="col-xl-3 col-md-6 col-sm-12 mb-4">
+                <div class="infra-img">
+                  <a href="assets/images/anatomy-department/activities/cadveric/cadveric-oath-1.webp" data-fancybox="gallery">
+                    <img src="assets/images/anatomy-department/activities/cadveric/cadveric-oath-1.webp" alt="Cadaveric Oath 1" class="img-fluid rounded shadow-sm">
+                  </a>
+                </div>
+              </div>
+
+              <div class="col-xl-3 col-md-6 col-sm-12 mb-4">
+                <div class="infra-img">
+                  <a href="assets/images/anatomy-department/activities/cadveric/cadveric-oath-2.webp" data-fancybox="gallery">
+                    <img src="assets/images/anatomy-department/activities/cadveric/cadveric-oath-2.webp" alt="Cadaveric Oath 2" class="img-fluid rounded shadow-sm">
+                  </a>
+                </div>
+              </div>
+
+              <div class="col-xl-3 col-md-6 col-sm-12 mb-4">
+                <div class="infra-img">
+                  <a href="assets/images/anatomy-department/activities/cadveric/cadveric-oath-3.webp" data-fancybox="gallery">
+                    <img src="assets/images/anatomy-department/activities/cadveric/cadveric-oath-3.webp" alt="Cadaveric Oath 3" class="img-fluid rounded shadow-sm">
+                  </a>
+                </div>
+              </div>
+
+              <div class="col-xl-3 col-md-6 col-sm-12 mb-4">
+                <div class="infra-img">
+                  <a href="assets/images/anatomy-department/activities/cadveric/cadveric-oath-4.webp" data-fancybox="gallery">
+                    <img src="assets/images/anatomy-department/activities/cadveric/cadveric-oath-4.webp" alt="Cadaveric Oath 4" class="img-fluid rounded shadow-sm">
+                  </a>
+                </div>
+              </div>
+
+              <div class="col-xl-3 col-md-6 col-sm-12 mb-4">
+                <div class="infra-img">
+                  <a href="assets/images/anatomy-department/activities/cadveric/cadveric-oath-5.webp" data-fancybox="gallery">
+                    <img src="assets/images/anatomy-department/activities/cadveric/cadveric-oath-5.webp" alt="Cadaveric Oath 5" class="img-fluid rounded shadow-sm">
+                  </a>
+                </div>
+              </div>
+
+              <div class="col-xl-3 col-md-6 col-sm-12 mb-4">
+                <div class="infra-img">
+                  <a href="assets/images/anatomy-department/activities/cadveric/cadveric-oath-6.webp" data-fancybox="gallery">
+                    <img src="assets/images/anatomy-department/activities/cadveric/cadveric-oath-6.webp" alt="Cadaveric Oath 6" class="img-fluid rounded shadow-sm">
+                  </a>
+                </div>
+              </div>
+
+              <!-- Anatomy Department Images -->
+              <div class="col-xl-3 col-md-6 col-sm-12 mb-4">
+                <div class="infra-img">
+                  <a href="assets/images/anatomy-department/anatomy-department-1.webp" data-fancybox="gallery">
+                    <img src="assets/images/anatomy-department/anatomy-department-1.webp" alt="Anatomy Department 1" class="img-fluid rounded shadow-sm">
+                  </a>
+                </div>
+              </div>
+
+              <div class="col-xl-3 col-md-6 col-sm-12 mb-4">
+                <div class="infra-img">
+                  <a href="assets/images/anatomy-department/anatomy-department-2.webp" data-fancybox="gallery">
+                    <img src="assets/images/anatomy-department/anatomy-department-2.webp" alt="Anatomy Department 2" class="img-fluid rounded shadow-sm">
+                  </a>
+                </div>
+              </div>
+
+              <div class="col-xl-3 col-md-6 col-sm-12 mb-4">
+                <div class="infra-img">
+                  <a href="assets/images/anatomy-department/anatomy-department-3.webp" data-fancybox="gallery">
+                    <img src="assets/images/anatomy-department/anatomy-department-3.webp" alt="Anatomy Department 3" class="img-fluid rounded shadow-sm">
+                  </a>
+                </div>
+              </div>
+
+              <div class="col-xl-3 col-md-6 col-sm-12 mb-4">
+                <div class="infra-img">
+                  <a href="assets/images/anatomy-department/anatomy-department-4.webp" data-fancybox="gallery">
+                    <img src="assets/images/anatomy-department/anatomy-department-4.webp" alt="Anatomy Department 4" class="img-fluid rounded shadow-sm">
+                  </a>
+                </div>
+              </div>
+
+              <div class="col-xl-3 col-md-6 col-sm-12 mb-4">
+                <div class="infra-img">
+                  <a href="assets/images/anatomy-department/anatomy-department-5.webp" data-fancybox="gallery">
+                    <img src="assets/images/anatomy-department/anatomy-department-5.webp" alt="Anatomy Department 5" class="img-fluid rounded shadow-sm">
+                  </a>
+                </div>
+              </div>
+
+              <div class="col-xl-3 col-md-6 col-sm-12 mb-4">
+                <div class="infra-img">
+                  <a href="assets/images/anatomy-department/anatomy-department-6.webp" data-fancybox="gallery">
+                    <img src="assets/images/anatomy-department/anatomy-department-6.webp" alt="Anatomy Department 6" class="img-fluid rounded shadow-sm">
+                  </a>
+                </div>
+              </div>
+            </div>`;
+          break;
+      }
+
+      content.innerHTML = html;
+      
+      // Initialize Fancybox for any new images
+      $('[data-fancybox]').fancybox({
+        buttons: [
+          "zoom",
+          "share",
+          "slideShow",
+          "fullScreen",
+          "download",
+          "thumbs",
+          "close"
+        ]
+      });
+    }
+
+    // Toggle Vision / Mission content
+    function showTab(tab) {
+      const vision = document.getElementById('vision-content');
+      const mission = document.getElementById('mission-content');
+      const visionTab = document.querySelector('.tab.vision');
+      const missionTab = document.querySelector('.tab.mission');
+
+      if (tab === 'vision') {
+        vision.classList.remove('hidden');
+        mission.classList.add('hidden');
+        visionTab.classList.add('active');
+        missionTab.classList.remove('active');
+      } else {
+        mission.classList.remove('hidden');
+        vision.classList.add('hidden');
+        missionTab.classList.add('active');
+        visionTab.classList.remove('active');
+      }
+    }
+
+    // Load default content on page load
+    window.onload = function () {
+      loadContent('vision');
+    };
+
+    // Make first li of every .quick-menu-fcims list active
+    window.addEventListener("load", function () {
+      const lists = document.querySelectorAll(".quick-menu-fcims ul");
+      lists.forEach(ul => {
+        const firstItem = ul.querySelector("li");
+        if (firstItem) firstItem.classList.add("active");
+      });
+    });
+  </script>
+</body>
+</html>
